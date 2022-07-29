@@ -1,72 +1,90 @@
 <?php
-	// koneksi database
-	include '../Plugin/koneksi.php';
+// koneksi database
+	include '../public/koneksi.blade.php';
 
-	// edit dan hapus
-	if (isset($_GET['hal'])) {
-		if ($_GET['hal'] == "edit") {
-			$tampil = mysqli_query($koneksi, "SELECT * from tabel_lapkinerja where id = '$_GET[id]'");
-			$data = mysqli_fetch_array($tampil);
-			if ($data) {
-				$vnip 		= $data['NIP'];
-				$vnama		= $data['tname'];
-				$vjabatan	= $data['tjabatan'];
-				$vopd		= $data['topd'];
-				$vnipatasan	= $data['tnipatasan'];
-				$vnamaatasan= $data['tnameatasan'];
-				$vrencana	= $data['trencana'];
-				$vtarget	= $data['ttarget'];
-				$vsatuan	= $data['tsatuan'];
-				$vwaktu		= $data['twaktu'];
+	if (isset($_POST['bsimpan'])) 
+	{
+		// pengujian data di simpan atau edit
+		if ($_GET['hal'] == "edit") 
+		{
+			// data akan di edit
+			$edit = mysqli_query($koneksi,"UPDATE tabel_lapkinerja set
+											NIP 			= '$_POST[tnip]',
+											tname 			= '$_POST[tname]',
+											tjabatan 		= '$_POST[tjabatan]',
+											topd 			= '$_POST[topd]',
+											tnipatasan 		= '$_POST[tnipatasan]',
+											tnameatasan 	= '$_POST[tnameatasan]',
+											rencana 		= '$_POST[trencana]',
+											target 			= '$_POST[ttarget]',
+											satuan 			= '$_POST[tsatuan]',
+											waktu 			= '$_POST[twaktu]'
+											where 		id 	= '$_GET[id]'
+											");
+
+			if ($edit) 
+			{
+				echo "<script>
+						alert('Edit data Berhasil!');
+						document.location='rencana.php';
+					</script>";
 			}
-		}
-		else {
-			if ($_GET['hal'] == "hapus") {
-				$hapus = mysqli_query($koneksi, "DELETE from tabel_lapkinerja where id = '$_GET[id]' ");
-				if ($hapus) {
-					echo "	<script>
-								alert('Hapus Data Berhasil!!');
-								document.location='laporan.php';
-							</script>";
-				}
+			else
+			{
+				echo "<script>
+						alert('Edit data Gagal!');
+						document.location='rencana.php';
+					</script>";
+			}
+
+		} else
+		{
+			//Data akan di simpan
+			$simpan = mysqli_query($koneksi,"INSERT into tabel_lapkinerja (NIP, tname, tjabatan, topd, tnipatasan, tnameatasan, rencana, target, satuan, waktu) 
+										values 	('$_POST[tnip]',
+												'$_POST[tname]',
+												'$_POST[tjabatan]',
+												'$_POST[topd]',
+												'$_POST[tnipatasan]',
+												'$_POST[tnameatasan]',
+												'$_POST[trencana]',
+												'$_POST[ttarget]',
+												'$_POST[tsatuan]',
+												'$_POST[twaktu]')
+										");
+
+			if ($simpan) 
+			{
+				echo "<script>
+						alert('Simpan data Berhasil!');
+						document.location='rencana.php';
+					</script>";
+			}
+			else
+			{
+				echo "<script>
+						alert('Simpan data Gagal!');
+						document.location='rencana.php';
+					</script>";
 			}
 		}
 
 	}
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Style dari bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-<!-- Css Custome -->
-    <link rel="stylesheet" href="plugin/style.css">
-</head>
-
-<body>
-
-<?php
-    include "sidebar.php"
-?>
+{{-- menggunakan templat tampilan web --}}
+@extends('layouts.tampilan')
+@section('content')
 
 <div class="container-md">
 	
 <!-- Card Input -->
-<?php
-// masukan data
-include "input-rencana.php";
-?>
 	<div class="card mt-5">
 		<div class="card-header bg-primary text-white text-center">
 	    	Input Rencana Kinerja Pegawai
 	  	</div>
 	  	<div class="card-body">
-	   		<form method="post" action="">
+	   		<form method="post" action="{{ "rencana" }}">
 	   			<div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label textUbah">nip</label>
 					<input type="text" name="tnip" value="<?=@$vnip?>" class="form-control" id="exampleFormControlInput1" placeholder="Masukan NIP tanpa spasi !" required>
@@ -197,15 +215,4 @@ include "input-rencana.php";
 	</div>
 <!-- Akhir Card Tabel -->
 
-</div>
-
-<!-- Js boostrp 5 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-</body>
-<footer>
-	<div class="p-3"></div>
-	<?php
-		include 'footer.php'
-	?>
-</footer>
+@endsection

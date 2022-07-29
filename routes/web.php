@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index', [
-        "style" => "style.css",
-        "name" => "Ricky Mubarak"
+        "style" => "style.css"
     ]);
 });
 
@@ -26,14 +25,14 @@ Route::get('/home', function () {
     ]);
 });
 
-Route::get('/sidebar', function () {
-    return view('sidebar', [
-        "style" => "syle.css"
+Route::get('rencana', function () {
+    return view('page.rencana', [
+        "style" => "style.css"
     ]);
 });
 
-Route::get('/footer', function () {
-    return view('footer', [
+Route::get('laporan', function () {
+    return view('page.laporan', [
         "style" => "style.css"
     ]);
 });

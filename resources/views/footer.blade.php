@@ -20,8 +20,6 @@
 </body>
 
 <footer class="bg-success text-white text-center pb-2">
-   	<p>All Reserverd <i class="bi bi-c-circle-fill"></i> by <a href="#" class="text-white fw-bold" style="text-decoration: none;">PJLP IT BKPSDM</a></p>
 
-   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </footer>
 </html>

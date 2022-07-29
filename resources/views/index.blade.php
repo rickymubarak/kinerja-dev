@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <!-- Css Custome -->
-    <link rel="stylesheet" href="{{ @style }}">
+    <link rel="stylesheet" href="{{ $style }}">
 
     <title>Pelaporan Kinerja</title>
 </head>
@@ -16,8 +16,7 @@
     <div class="fContainer">
         <div class="box-login">
             <form action="{{ "home" }}" method="get">
-                <h1>{{ @name }}</h1>
-                <label class="login">Login</label><br>
+                <h1><label class="login">Login</label></h1>
                 <label>Username</label><br>
                     <input type="text" placeholder="Masukan NIP"><br>
                 <label>Password</label><br>

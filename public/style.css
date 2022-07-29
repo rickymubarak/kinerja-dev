@@ -34,26 +34,24 @@ body {
     font-weight: 400;
     text-transform: uppercase;
 }
+*/
 
 .navbar { 
     display: flex;
-    justify-content: space-between;
-    text-align: center;
+    text-align: left;
     width: 100%;
-    height: 3rem;
-    background-color: #20c997;
-    font-size: 1.5rem
+    height: 20rem;
+    background-color: lightcoral;
+    font-size: 1.5rem;
     font-weight: 15px;
 }
 
 .navbar > ul {
-    display: flex;
+    grid-column: auto;
 }
 
 .navbar > ul > li {
     list-style: none;
-    padding-right: 10px;
-    padding: 7px;
 }
 
 .navbar > ul > li> a {
@@ -66,19 +64,14 @@ body {
     transition: all .3s ease-in-out;
 }
 
-.aktive {
-    background-color: tomato;
-    padding: 20px 13px 13px 13px;
-}
-
-.tkonten {
+/* .tkonten {
     padding: 2rem 2rem 0 2rem; 
 }
 
 .tkonten > table {
     border: 1px solid black;
     width: 100%;
-}*/
+} */
 
 /*css lama akhir*/
 
@@ -94,11 +87,11 @@ a, a:hover, a:focus {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s;
-}*/
-
+}
+*/
 
 /*sidebar baru*/
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 :root   {
     --header-height: 3rem;
     --nav-width: 68px;
@@ -279,4 +272,4 @@ a {
 
 .textUbah {
     text-transform: uppercase;
-}
+} */

@@ -1,6 +1,7 @@
 <?php
 	// koneksi database
-	include '../Plugin/koneksi.php';
+	include '../public/koneksi.blade.php';
+
 	if (isset($_GET['hal'])) {
 		if ($_GET['hal'] == "edit") {
 			$tampil = mysqli_query($koneksi, "SELECT * from tabel_lapkinerja where id = '$_GET[id]'");
@@ -44,19 +45,13 @@
     <link rel="stylesheet" href="plugin/style.css">
 </head>
 
-<body>
-
-<?php
-    include "sidebar.php"
-?>
+{{-- menggunakan templat tampilan web --}}
+@extends('layouts.tampilan')
+@section('content')
 
 <div class="container-md">
 
 <!-- Card Input -->
-<?php
-// masukan data
-include'tambah.php';
-?>
 	<div class="card mt-5">
 		<div class="card-header bg-primary text-white text-center">
 	    	Input Data Capaian Kinerja Pegawai
@@ -168,13 +163,8 @@ include'tambah.php';
 	   								} 
 	   					?>
 	   					</label></td>
-	   				<td><?php
-	   						$rencana 	= $data['target'];
-	   						$realisasi	= $data['targetlaporan'];
-	   						$persen		= ($realisasi / $rencana) * 100;
-	   	
-	   						echo $persen; echo ' %';
-	   					?>
+	   				<td>
+						
 	   				</td>
 	   				<td>
 	   					<a href="laporan.php?hal=edit&id=<?=$data['id']?>" class="btn btn-warning mb-2">Ubah</a>
@@ -188,14 +178,13 @@ include'tambah.php';
 <!-- Akhir Card Tabel -->
 
 </div>
+@endsection
 
-<!-- Js boostrp 5 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{{-- <?php "{{  
+	$rencana 	= $data['target'];
+	$realisasi	= $data['targetlaporan'];
+	$persen		= ($realisasi / $rencana) * 100;
 
-</body>
-<footer>
-	<div class="p-3"></div>
-	<?php
-		include 'footer.php'
-	?>
-</footer>
+	echo $persen; echo ' %';
+}}"
+?> --}}
